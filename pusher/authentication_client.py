@@ -10,7 +10,6 @@ import collections
 import hashlib
 import json
 import os
-import re
 import six
 import time
 import base64
@@ -20,7 +19,6 @@ from pusher.util import (
     ensure_binary,
     validate_channel,
     validate_socket_id,
-    channel_name_re
     )
 
 from pusher.client import Client
@@ -72,9 +70,6 @@ class AuthenticationClient(Client):
         :param custom_data: used on presence channels to provide user info
         """
         channel = validate_channel(channel)
-
-        if not channel_name_re.match(channel):
-            raise ValueError('Channel should be a valid channel, got: %s' % channel)
 
         socket_id = validate_socket_id(socket_id)
 

@@ -309,10 +309,6 @@ class TestPusherClient(unittest.TestCase):
         self.assertRaises(TypeError, lambda:
             self.pusher_client.trigger.make_request({u'channels': u'test_channel'}, u'some_event', {u'message': u'hello world'}))
 
-    def test_trigger_disallow_invalid_channels(self):
-        self.assertRaises(ValueError, lambda:
-            self.pusher_client.trigger.make_request([u'so/me_channel!'], u'some_event', {u'message': u'hello world'}))
-
     def test_trigger_disallow_private_encrypted_channel_with_multiple_channels(self):
         pc = PusherClient(
                 app_id=u'4',

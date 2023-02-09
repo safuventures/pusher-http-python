@@ -81,7 +81,6 @@ class TestAuthenticationClient(unittest.TestCase):
 
         self.assertRaises(TypeError, lambda: authenticationClient.authenticate(2423, u'34554'))
         self.assertRaises(TypeError, lambda: authenticationClient.authenticate(u'plah', 234234))
-        self.assertRaises(ValueError, lambda: authenticationClient.authenticate(u'::', u'345345'))
 
 
     def test_authenticate_for_presence_channels(self):

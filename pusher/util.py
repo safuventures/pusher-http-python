@@ -12,10 +12,7 @@ import six
 import sys
 import base64
 
-channel_name_re = re.compile(r'\A[-a-zA-Z0-9_=@,.;]+\Z')
-app_id_re = re.compile(r'\A[0-9]+\Z')
 pusher_url_re = re.compile(r'\A(http|https)://(.*):(.*)@(.*)/apps/([0-9]+)\Z')
-socket_id_re = re.compile(r'\A\d+\.\d+\Z')
 
 if sys.version_info < (3,):
     text = 'a unicode string'
@@ -75,9 +72,6 @@ def validate_user_id(user_id):
     if length > 200:
         raise ValueError("User id too long: '{}'".format(user_id))
 
-    if not channel_name_re.match(user_id):
-        raise ValueError("Invalid user id: '{}'".format(user_id))
-
     return user_id
 
 def validate_channel(channel):
@@ -86,18 +80,11 @@ def validate_channel(channel):
     if len(channel) > 200:
         raise ValueError("Channel too long: %s" % channel)
 
-    if not channel_name_re.match(channel):
-        raise ValueError("Invalid Channel: %s" % channel)
-
     return channel
 
 
 def validate_socket_id(socket_id):
     socket_id = ensure_text(socket_id, "socket_id")
-
-    if not socket_id_re.match(socket_id):
-        raise ValueError("Invalid socket ID: %s" % socket_id)
-
     return socket_id
 
 
